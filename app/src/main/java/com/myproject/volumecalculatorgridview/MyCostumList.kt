@@ -8,19 +8,19 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 
-class MyCostumList(val context:Context,val griditem:List<Shape>) : ArrayAdapter<Shape>(context,0,griditem) {
+class MyCostumList(val ctx:Context,val griditem:List<Shape>) : ArrayAdapter<Shape>(ctx,0,griditem) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var itemView = convertView
         val holder: ViewHolder
 
         if (convertView == null){
-            itemView = LayoutInflater.from(context)
+            itemView = LayoutInflater.from(ctx)
                 .inflate(R.layout.griditem_view,parent,false) //inflate itu intinya merubah layout xml menjadi sebuah object
             holder = ViewHolder()
             holder.imageView = itemView.findViewById(R.id.imageView)
             holder.textView = itemView.findViewById(R.id.textView)
 
-            itemView.tag = holder
+            itemView.tag = holder //menyimpan object kedalam tag, agar tidak perlu melakukan findviewbyid
         } else {
             holder = itemView?.tag as ViewHolder
         }
