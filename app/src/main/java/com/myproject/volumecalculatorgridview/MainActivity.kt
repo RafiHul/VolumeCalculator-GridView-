@@ -1,6 +1,7 @@
 package com.myproject.volumecalculatorgridview
 
 import android.os.Bundle
+import android.widget.GridView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,5 +13,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        val gridview:GridView = findViewById(R.id.gridViewItem)
+
+        val listItem:List<Shape> = listOf(
+            Shape(R.drawable.cube,"Cube"),
+            Shape(R.drawable.cylinder,"Cylinder"),
+            Shape(R.drawable.prism,"Prism"),
+            Shape(R.drawable.sphere,"Sphere")
+
+        )
+
+        gridview.adapter = MyCostumList(this,listItem)
     }
 }
