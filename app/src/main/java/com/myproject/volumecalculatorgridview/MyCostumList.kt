@@ -1,12 +1,21 @@
 package com.myproject.volumecalculatorgridview
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+
+fun clickListen(ctx:Context,name:String,imgid:Int){
+    val i = Intent(ctx,CalculateActivity::class.java)
+    i.putExtra("Gambarnya",imgid)
+    i.putExtra("Jenis",name)
+    ctx.startActivity(i)
+}
 
 class MyCostumList(val ctx:Context,val griditem:List<Shape>) : ArrayAdapter<Shape>(ctx,0,griditem) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -28,6 +37,10 @@ class MyCostumList(val ctx:Context,val griditem:List<Shape>) : ArrayAdapter<Shap
         val current = griditem[position]
         holder.imageView.setImageResource(current.image)
         holder.textView.text = current.name
+
+        itemView?.setOnClickListener{
+            clickListen(ctx,current.name,current.image)
+        }
 
         return itemView!! //!! adalah pernyataan nonnull
     }
