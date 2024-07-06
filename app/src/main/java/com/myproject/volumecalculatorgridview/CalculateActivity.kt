@@ -20,7 +20,6 @@ class CalculateActivity : AppCompatActivity() {
     private lateinit var textViewHasil:TextView
     private lateinit var imageViewGambar:ImageView
     private lateinit var buttonHitung:Button
-    private lateinit var jenis:String
 
     private fun calculate(a:Int,b:Int = 0,jen:String?){
         when (jen){
@@ -65,7 +64,7 @@ class CalculateActivity : AppCompatActivity() {
             val num = editTextInputCalculate.text.toString()
             val num2 = editTextInputCalculate2.text.toString()
             if (num.isNotEmpty()){
-                calculate(num.toInt(),num2.toInt(), jenis)
+                calculate(num.toInt(),if (num2.length == 0) 0 else num2.toInt(), jenis)
             } else {
                 Toast.makeText(this, "Tidak Boleh Kosong", Toast.LENGTH_SHORT).show()
             }
